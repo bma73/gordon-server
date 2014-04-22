@@ -1,0 +1,6 @@
+{"level":"info","message":"Session \"example01\" created","timestamp":"2014-04-22T19:06:53.482Z"}
+{"level":"info","message":"Room \"lobby\" created.","timestamp":"2014-04-22T19:06:53.483Z"}
+{"level":"info","message":"Room \"lobby1\" created.","timestamp":"2014-04-22T19:06:53.483Z"}
+{"level":"info","message":"Room \"lobby2\" created.","timestamp":"2014-04-22T19:06:53.483Z"}
+{"level":"info","message":"TCP Server is listening on port 9091","timestamp":"2014-04-22T19:06:53.484Z"}
+{"level":"info","message":"WebSocket Server is listening on port 9092","timestamp":"2014-04-22T19:06:53.484Z"}
