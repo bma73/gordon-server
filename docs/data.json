@@ -1,0 +1,704 @@
+{
+    "project": {
+        "name": "Gordon Server",
+        "version": "0.1.0"
+    },
+    "files": {
+        "lib\\structure\\data-object.js": {
+            "name": "lib\\structure\\data-object.js",
+            "modules": {
+                "gordon": 1
+            },
+            "classes": {
+                "DataObject": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib\\structure\\room.js": {
+            "name": "lib\\structure\\room.js",
+            "modules": {},
+            "classes": {
+                "Room": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib\\structure\\session.js": {
+            "name": "lib\\structure\\session.js",
+            "modules": {},
+            "classes": {
+                "Session": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib\\structure\\user.js": {
+            "name": "lib\\structure\\user.js",
+            "modules": {},
+            "classes": {
+                "User": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib\\server.js": {
+            "name": "lib\\server.js",
+            "modules": {},
+            "classes": {
+                "Server": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "gordon": {
+            "name": "gordon",
+            "submodules": {},
+            "classes": {
+                "DataObject": 1,
+                "Room": 1,
+                "Session": 1,
+                "User": 1,
+                "Server": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib\\server.js",
+            "line": 8
+        }
+    },
+    "classes": {
+        "DataObject": {
+            "name": "DataObject",
+            "shortname": "DataObject",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gordon",
+            "namespace": "",
+            "file": "lib\\structure\\data-object.js",
+            "line": 34,
+            "description": "DataObject are used to synchronize states between the connected clients.\nDataObjects live inside a room.\nEvery DataObject consists of key/value pairs, where keys must be unique integers (per DataObject) and the values must\nbe a <a href=\"http://nodejs.org/api/buffer.html\">Buffer</a>.\n\nEvery {{#crossLink \"User\"}}{{/crossLink}} has his own DataObject. Additional DataObjects could be created by\na client or by the {{#crossLink \"Room/createDataObject:method\"}}server{{/crossLink}}.\n\nDataObject could be used to represent objects like e.g. bots, windows, laser shots, grenades,\nbarrels, text blocks, cars etc.\n\n\n <pre>\n    var dataObject = user.dataObject;\n    dataObject.getValue(DataKey.X_POS).writeInt16BE(500, 0);\n    dataObject.getValue(DataKey.Y_POS).writeInt16BE(500, 0);\n    dataObject.getValue(DataKey.NAME).write('John Doe Jr.');\n\n   //broadcast values to dataObject's room\n   dataObject.broadcastValues([DataKey.X_POS, DataKey.Y_POS, DataKey.NAME]);\n  </pre>"
+        },
+        "Room": {
+            "name": "Room",
+            "shortname": "Room",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gordon",
+            "namespace": "",
+            "file": "lib\\structure\\room.js",
+            "line": 6,
+            "description": "A session can be divided in any number of rooms. Rooms are where the clients communicate.\nEvery room is limited to a maximum number of clients."
+        },
+        "Session": {
+            "name": "Session",
+            "shortname": "Session",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gordon",
+            "namespace": "",
+            "file": "lib\\structure\\session.js",
+            "line": 6,
+            "description": "The session is the highest object in the Gordon hierarchy.\nEvery session is completely independent from other sessions.\nSessions can have {{#crossLink \"Room\"}}rooms{{/crossLink}}."
+        },
+        "User": {
+            "name": "User",
+            "shortname": "User",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gordon",
+            "namespace": "",
+            "file": "lib\\structure\\user.js",
+            "line": 6,
+            "description": "Every connected client is represented by an User instance."
+        },
+        "Server": {
+            "name": "Server",
+            "shortname": "Server",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gordon",
+            "namespace": "",
+            "file": "lib\\server.js",
+            "line": 8,
+            "description": "The Gordon Server\n\n<pre>\n    var gordon = require('gordon');\n    //max number of concurrent users for this instance are 1000\n    gordon.setMaxUsers(1000);\n    gordon.createTCPServer(9091);\n    gordon.createWebSocketServer(9092);\n    var session = gordon.createSession('session1', 'A session');\n    var lobby = session.createRoom('lobby', {name:'lobby',\n                                             maxUsers:200,\n                                             persistent:true});\n    var room1 = session.createRoom('room1', {name:'Room1',\n                                             maxUsers:100,\n                                             persistent:true,\n                                             password:'top-secret'});\n</pre>"
+        }
+    },
+    "classitems": [
+        {
+            "file": "lib\\structure\\data-object.js",
+            "line": 63,
+            "description": "The id.",
+            "itemtype": "property",
+            "name": "id",
+            "type": "Number",
+            "class": "DataObject",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\data-object.js",
+            "line": 69,
+            "description": "The room.",
+            "itemtype": "property",
+            "name": "room",
+            "type": "Room",
+            "class": "DataObject",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\data-object.js",
+            "line": 76,
+            "description": "The according user if this dataObject belongs to a user.",
+            "itemtype": "property",
+            "name": "user",
+            "type": "User",
+            "default": "null",
+            "class": "DataObject",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\data-object.js",
+            "line": 99,
+            "description": "Gets the buffer for the provided key.",
+            "itemtype": "method",
+            "name": "getValue",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "The key.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The buffer.",
+                "type": "<a href=\"http://nodejs.org/api/buffer.html\">Buffer</a>"
+            },
+            "class": "DataObject",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\data-object.js",
+            "line": 112,
+            "description": "Broadcasts the values of the given keys to the users in the dataObject's room.",
+            "itemtype": "method",
+            "name": "broadcastValues",
+            "params": [
+                {
+                    "name": "keys",
+                    "description": "An array with keys.",
+                    "type": "Array"
+                }
+            ],
+            "example": [
+                "\n<pre>\n    //broadcast the values of the keys 0, 4 and 12\n    dataObject.broadcastValues([0, 4, 12]);\n</pre>"
+            ],
+            "class": "DataObject",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\data-object.js",
+            "line": 130,
+            "description": "Broadcasts all values of all keys to the users in the dataObject's room.",
+            "itemtype": "method",
+            "name": "broadcastAllValues",
+            "class": "DataObject",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\room.js",
+            "line": 24,
+            "description": "The room UUID.",
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "class": "Room",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\room.js",
+            "line": 31,
+            "description": "The password for this room. If empty there's no password.",
+            "itemtype": "property",
+            "name": "password",
+            "type": "String",
+            "default": "''",
+            "class": "Room",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\room.js",
+            "line": 39,
+            "description": "The room name.",
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "class": "Room",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\room.js",
+            "line": 46,
+            "description": "The max number of users for this room.",
+            "itemtype": "property",
+            "name": "maxUsers",
+            "type": "Number",
+            "default": "50",
+            "class": "Room",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\room.js",
+            "line": 54,
+            "description": "If set to true this room won't be removed automatically after 2 secs if emtpy.",
+            "itemtype": "property",
+            "name": "persistent",
+            "type": "Boolean",
+            "class": "Room",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\room.js",
+            "line": 61,
+            "description": "The number of users.",
+            "itemtype": "property",
+            "name": "userCount",
+            "type": "Number",
+            "class": "Room",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\room.js",
+            "line": 69,
+            "description": "The master user of this room.\nEvery room has one dedicated master user. The master changes automatically\nif the current master user left the room.",
+            "itemtype": "property",
+            "name": "master",
+            "type": "User",
+            "class": "Room",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\room.js",
+            "line": 78,
+            "description": "The session the room belongs to.",
+            "itemtype": "property",
+            "name": "session",
+            "type": "Session",
+            "class": "Room",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\room.js",
+            "line": 85,
+            "description": "The custom logic attached to this room.\nSee the examples for use cases.\n\n<pre>\n var Gamelogic = require('./gamelogic');\n\n var session = gordon.createSession('session1', 'Session with custom logic');\n var lobby = session.createRoom('lobby');\n\n //create the logic module only for room1\n lobby.logic = new Gamelogic(lobby);\n</pre>\n\nThe logic object could also define the following methods to modify\nthe standard protocol flow:\n\n<pre>\njoinLogic(user, proceed)\nchangeRoomLogic(user, newRoom, oldRoom, proceed)\nchatMessageLogic(target, message, proceed)\ncustomMessageLogic(buffer, proceed)\n</pre>\n\nCall the passed in proceed function to continue with the\nstandard protocol flow.\n\n<pre>\n   this.changeRoomLogic = function (user, newRoom, oldRoom, proceed) {\n     //don't allow users to change from to room3\n     if (newRoom.id == 'room3') {\n          proceed(false);\n     } else {\n         proceed(true);\n     }\n   };\n</pre>",
+            "itemtype": "property",
+            "name": "logic",
+            "type": "Object",
+            "class": "Room",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\room.js",
+            "line": 158,
+            "description": "Creates a {{#crossLink \"DataObject\"}}{{/crossLink}} in this room.",
+            "itemtype": "method",
+            "name": "createDataObject",
+            "params": [
+                {
+                    "name": "values",
+                    "description": "An object with key/values. The keys must be unique integers. The values must be binary.",
+                    "type": "Object"
+                },
+                {
+                    "name": "broadcast",
+                    "description": "If true the creation will be broadcast to all users in the room.",
+                    "type": "Boolean",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "The freshly created dataObject.",
+                "type": "DataObject"
+            },
+            "example": [
+                "\n<pre>\n //define the dataobject structure\n var values = {};\n values[0] = new Buffer(1);\n values[1] = new Buffer(2);\n values[2] = new Buffer(2);\n values[3] = new Buffer(1);\n values[4] = new Buffer(4);\n\n this.active = Rnd.boolean();\n\n //write the initial values\n values[0].writeInt8(1, 0);\n values[1].writeInt16BE(900, 0);\n values[2].writeInt16BE(500, 0);\n values[3].writeInt8(false, 0);\n values[4].writeInt32BE(0xff0000, 0);\n\n //create and broadcast the dataObject\n this.dataObject = this.room.createDataObject(values, true);\n</pre>"
+            ],
+            "class": "Room",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\session.js",
+            "line": 19,
+            "description": "The session UUID.",
+            "itemtype": "property",
+            "name": "id",
+            "type": "String",
+            "class": "Session",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\session.js",
+            "line": 26,
+            "description": "The number  of rooms.",
+            "itemtype": "property",
+            "name": "roomCount",
+            "type": "Number",
+            "class": "Session",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\session.js",
+            "line": 33,
+            "description": "The number  of users.",
+            "itemtype": "property",
+            "name": "userCount",
+            "type": "Number",
+            "class": "Session",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\session.js",
+            "line": 40,
+            "description": "The session name.",
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "class": "Session",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\session.js",
+            "line": 50,
+            "description": "The logic factory assigned to this session.\nThe assigned function is called when a room has been created internally.\nThis could be used to modify the room's properties or e.g. attach a custom\nroom logic accordingly by returning a 'room logic object'. See {{#crossLink \"Room/logic:property\"}}room logic{{/crossLink}}\nfor more infos.",
+            "example": [
+                "\n<pre>\n var Gamelogic = require('./gamelogic');\n\n session.logicFactory = function (room) {\n  var gamelogic;\n\n  if (room.id == 'room1') {\n      gamelogic = new Gamelogic(room, 0x800080);\n      //by default rooms will be removed automatically after 2 sec if empty\n      //setting the persistent flag to true will prevent this\n      room.persistent = true;\n      return gamelogic;\n  }\n\n  if (room.id == 'room2') {\n      gamelogic = new Gamelogic(room, 0xFF8000);\n      room.persistent = true;\n      return gamelogic;\n  }\n\n  if (room.id == 'room3') {\n      gamelogic = new Gamelogic(room, 0x80FF00);\n      room.persistent = true;\n      return gamelogic;\n  }\n};\n</pre>"
+            ],
+            "itemtype": "property",
+            "name": "logicFactory",
+            "type": "Function",
+            "default": "null",
+            "class": "Session",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\session.js",
+            "line": 93,
+            "description": "If autoRoomCreate is set to true and a user wants to join into a not yet\nexisting room, a room with the provided roomId will be created automatically.",
+            "itemtype": "property",
+            "name": "autoRoomCreate",
+            "type": "Boolean",
+            "default": "false",
+            "class": "Session",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\session.js",
+            "line": 115,
+            "description": "Creates a room.",
+            "itemtype": "method",
+            "name": "createRoom",
+            "params": [
+                {
+                    "name": "roomUUID",
+                    "description": "The session-wide unique room id.",
+                    "type": "String"
+                },
+                {
+                    "name": "options",
+                    "description": "An options object.",
+                    "type": "Object",
+                    "optional": true,
+                    "props": [
+                        {
+                            "name": "name",
+                            "description": "The room name.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "maxUsers",
+                            "description": "The maximum number of users. Default is 50.",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "persistent",
+                            "description": "If a room is non-persitent, it will be removed when empty. Default is false.",
+                            "type": "Boolean"
+                        },
+                        {
+                            "name": "password",
+                            "description": "Sets a password for this room. Default is no password.",
+                            "type": "String"
+                        }
+                    ]
+                },
+                {
+                    "name": "data",
+                    "description": "Data that should be stored with the room.",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "The freshly created room.",
+                "type": "Room"
+            },
+            "class": "Session",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\session.js",
+            "line": 168,
+            "description": "Gets a room by its id.",
+            "itemtype": "method",
+            "name": "getRoom",
+            "params": [
+                {
+                    "name": "roomUUID",
+                    "description": "The session-wide unique room id.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The room instance.",
+                "type": "Room"
+            },
+            "class": "Session",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\user.js",
+            "line": 13,
+            "description": "The user id.",
+            "itemtype": "property",
+            "name": "id",
+            "type": "Number",
+            "class": "User",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\user.js",
+            "line": 20,
+            "description": "The current room.",
+            "itemtype": "property",
+            "name": "room",
+            "type": "Room",
+            "class": "User",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\user.js",
+            "line": 27,
+            "description": "The user's session.",
+            "itemtype": "property",
+            "name": "session",
+            "type": "Session",
+            "class": "User",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\user.js",
+            "line": 34,
+            "description": "The user's dataObject.",
+            "itemtype": "property",
+            "name": "dataObject",
+            "type": "DataObject",
+            "class": "User",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\user.js",
+            "line": 41,
+            "description": "The user's connection.",
+            "itemtype": "property",
+            "name": "connection",
+            "type": "TCPConnection or WebSocketConnection",
+            "class": "User",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\user.js",
+            "line": 48,
+            "description": "The last ping.",
+            "itemtype": "property",
+            "name": "lastPingTime",
+            "type": "Number",
+            "class": "User",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\structure\\user.js",
+            "line": 56,
+            "description": "The user's name.",
+            "itemtype": "property",
+            "name": "name",
+            "type": "String",
+            "class": "User",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\server.js",
+            "line": 45,
+            "description": "Creates the given number of userIds. This also defines the max number of users\nthat could connect to this server instance.",
+            "itemtype": "method",
+            "name": "setMaxUsers",
+            "params": [
+                {
+                    "name": "amount",
+                    "description": "The number of ids. Default is 500.",
+                    "type": "Number",
+                    "optional": true
+                },
+                {
+                    "name": "add",
+                    "description": "If true the new ids will be added, otherwise the existing ids will be cleared first. Default is false.",
+                    "type": "Boolean",
+                    "optional": true
+                }
+            ],
+            "class": "Server",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\server.js",
+            "line": 57,
+            "description": "Creates a session. There has to be at least one session per server instance.",
+            "itemtype": "method",
+            "name": "createSession",
+            "params": [
+                {
+                    "name": "sessionUUId",
+                    "description": "The server-wide unique session id.",
+                    "type": "String"
+                },
+                {
+                    "name": "name",
+                    "description": "The session name.",
+                    "type": "String",
+                    "optional": true
+                },
+                {
+                    "name": "data",
+                    "description": "Data that should be stored with the session.",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "A session instance.",
+                "type": "Session"
+            },
+            "class": "Server",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\server.js",
+            "line": 70,
+            "description": "Sets the server configuration.",
+            "itemtype": "method",
+            "name": "configure",
+            "params": [
+                {
+                    "name": "conf",
+                    "description": "You could either pass an object or a filename.",
+                    "type": "String | Object"
+                }
+            ],
+            "class": "Server",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\server.js",
+            "line": 86,
+            "description": "Creates a new TCP server. The TCP server also supports Flash sockets and sends the\n\"cross domain policy\" file defined in the configuration accordingly.",
+            "itemtype": "method",
+            "name": "createTCPServer",
+            "params": [
+                {
+                    "name": "port",
+                    "description": "The port the server should listen.",
+                    "type": "Number"
+                }
+            ],
+            "class": "Server",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\server.js",
+            "line": 105,
+            "description": "Creates a new websocket server.",
+            "itemtype": "method",
+            "name": "createWebSocketServer",
+            "params": [
+                {
+                    "name": "port",
+                    "description": "The port the server should listen.",
+                    "type": "Number"
+                },
+                {
+                    "name": "checkOrigins",
+                    "description": "A list of origins that should be checked.",
+                    "type": "Array",
+                    "optional": true
+                }
+            ],
+            "class": "Server",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\server.js",
+            "line": 140,
+            "description": "Gets the current milliseconds since server start.",
+            "itemtype": "method",
+            "name": "getCurrentMillis",
+            "return": {
+                "description": "The milliseconds",
+                "type": "Number"
+            },
+            "class": "Server",
+            "module": "gordon"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " lib\\structure\\data-object.js:99"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " lib\\structure\\room.js:158"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " lib\\structure\\session.js:115"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " lib\\structure\\session.js:168"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " lib\\server.js:57"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " lib\\server.js:140"
+        }
+    ]
+}
