@@ -1,7 +1,7 @@
 {
     "name": "gordon-server",
     "description": "Multiplayer Server for NodeJS, HTML5 and Adobe Flash/Air",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "homepage": "https://github.com/bma73",
     "author": {
         "name": "Bjoern Acker",
