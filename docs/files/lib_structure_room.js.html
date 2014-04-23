@@ -190,7 +190,7 @@ function Room(id, options, data) {
      *  var session = gordon.createSession(&#x27;session1&#x27;, &#x27;Session with custom logic&#x27;);
      *  var lobby = session.createRoom(&#x27;lobby&#x27;);
      *
-     *  //create the logic module only for room1
+     *  //create the logic module and attach it the room
      *  lobby.logic = new Gamelogic(lobby);
      * &lt;/pre&gt;
      *
@@ -209,7 +209,7 @@ function Room(id, options, data) {
      *
      * &lt;pre&gt;
      *    this.changeRoomLogic = function (user, newRoom, oldRoom, proceed) {
-     *      //don&#x27;t allow users to change from to room3
+     *      //don&#x27;t allow users to change to room3
      *      if (newRoom.id == &#x27;room3&#x27;) {
      *           proceed(false);
      *      } else {

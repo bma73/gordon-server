@@ -307,7 +307,7 @@
         {
             "file": "lib\\structure\\room.js",
             "line": 85,
-            "description": "The custom logic attached to this room.\nSee the examples for use cases.\n\n<pre>\n var Gamelogic = require('./gamelogic');\n\n var session = gordon.createSession('session1', 'Session with custom logic');\n var lobby = session.createRoom('lobby');\n\n //create the logic module only for room1\n lobby.logic = new Gamelogic(lobby);\n</pre>\n\nThe logic object could also define the following methods to modify\nthe standard protocol flow:\n\n<pre>\njoinLogic(user, proceed)\nchangeRoomLogic(user, newRoom, oldRoom, proceed)\nchatMessageLogic(target, message, proceed)\ncustomMessageLogic(buffer, proceed)\n</pre>\n\nCall the passed in proceed function to continue with the\nstandard protocol flow.\n\n<pre>\n   this.changeRoomLogic = function (user, newRoom, oldRoom, proceed) {\n     //don't allow users to change from to room3\n     if (newRoom.id == 'room3') {\n          proceed(false);\n     } else {\n         proceed(true);\n     }\n   };\n</pre>",
+            "description": "The custom logic attached to this room.\nSee the examples for use cases.\n\n<pre>\n var Gamelogic = require('./gamelogic');\n\n var session = gordon.createSession('session1', 'Session with custom logic');\n var lobby = session.createRoom('lobby');\n\n //create the logic module and attach it the room\n lobby.logic = new Gamelogic(lobby);\n</pre>\n\nThe logic object could also define the following methods to modify\nthe standard protocol flow:\n\n<pre>\njoinLogic(user, proceed)\nchangeRoomLogic(user, newRoom, oldRoom, proceed)\nchatMessageLogic(target, message, proceed)\ncustomMessageLogic(buffer, proceed)\n</pre>\n\nCall the passed in proceed function to continue with the\nstandard protocol flow.\n\n<pre>\n   this.changeRoomLogic = function (user, newRoom, oldRoom, proceed) {\n     //don't allow users to change to room3\n     if (newRoom.id == 'room3') {\n          proceed(false);\n     } else {\n         proceed(true);\n     }\n   };\n</pre>",
             "itemtype": "property",
             "name": "logic",
             "type": "Object",
@@ -616,16 +616,19 @@
             "params": [
                 {
                     "name": "conf",
-                    "description": "You could either pass an object or a filename.",
+                    "description": "You could either pass an object or a filename pointing to a JSON file.",
                     "type": "String | Object"
                 }
+            ],
+            "example": [
+                "\nThe config file/object must have the following properties:\n<pre>\n    {\n       \"connectionTimeOut\":20000,\n       \"connectionBufferSize\": 1000,\n       \"flashPolicyFile\": \"&lt;cross-domain-policy&gt; &lt;allow-access-from domain='*' to-ports='*'/&gt; &lt;/cross-domain-policy&gt; \"\n    }\n</pre>\n<code>connectionTimeOut</code> Defines the time frame after which the server closes the connection to a client being inactive (sending no updates / ping).<br>\n<code>connectionBufferSize</code> The max size of a single message in bytes.<br>\n<code>flashPolicyFile</code> The socket policy xml file which is sent to a Flash/Air client.<br>"
             ],
             "class": "Server",
             "module": "gordon"
         },
         {
             "file": "lib\\server.js",
-            "line": 86,
+            "line": 98,
             "description": "Creates a new TCP server. The TCP server also supports Flash sockets and sends the\n\"cross domain policy\" file defined in the configuration accordingly.",
             "itemtype": "method",
             "name": "createTCPServer",
@@ -641,7 +644,23 @@
         },
         {
             "file": "lib\\server.js",
-            "line": 105,
+            "line": 117,
+            "description": "Creates a new TCP server. The TCP server also supports Flash sockets and sends the\n\"cross domain policy\" file defined in the configuration accordingly.",
+            "itemtype": "method",
+            "name": "createTCPServer",
+            "params": [
+                {
+                    "name": "port",
+                    "description": "The port the server should listen.",
+                    "type": "Number"
+                }
+            ],
+            "class": "Server",
+            "module": "gordon"
+        },
+        {
+            "file": "lib\\server.js",
+            "line": 136,
             "description": "Creates a new websocket server.",
             "itemtype": "method",
             "name": "createWebSocketServer",
@@ -663,7 +682,7 @@
         },
         {
             "file": "lib\\server.js",
-            "line": 140,
+            "line": 171,
             "description": "Gets the current milliseconds since server start.",
             "itemtype": "method",
             "name": "getCurrentMillis",
@@ -698,7 +717,7 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " lib\\server.js:140"
+            "line": " lib\\server.js:171"
         }
     ]
 }

@@ -169,7 +169,19 @@ function createSession(sessionUUId, name, data) {
  * Sets the server configuration.
  *
  * @method configure
- * @param {String | Object} conf You could either pass an object or a filename.
+ * @param {String | Object} conf You could either pass an object or a filename pointing to a JSON file.
+ * @example
+ * The config file/object must have the following properties:
+ * &lt;pre&gt;
+ *     {
+ *        &quot;connectionTimeOut&quot;:20000,
+ *        &quot;connectionBufferSize&quot;: 1000,
+ *        &quot;flashPolicyFile&quot;: &quot;&amp;lt;cross-domain-policy&amp;gt; &amp;lt;allow-access-from domain=&#x27;*&#x27; to-ports=&#x27;*&#x27;/&amp;gt; &amp;lt;/cross-domain-policy&amp;gt; &quot;
+ *     }
+ * &lt;/pre&gt;
+ * &lt;code&gt;connectionTimeOut&lt;/code&gt; Defines the time frame after which the server closes the connection to a client being inactive (sending no updates / ping).&lt;br&gt;
+ * &lt;code&gt;connectionBufferSize&lt;/code&gt; The max size of a single message in bytes.&lt;br&gt;
+ * &lt;code&gt;flashPolicyFile&lt;/code&gt; The socket policy xml file which is sent to a Flash/Air client.&lt;br&gt;
  */
 function configure(conf) {
     if (typeof(conf) == &#x27;string&#x27;) {
@@ -179,6 +191,25 @@ function configure(conf) {
         config = conf;
     }
     structure.initUserTimeOutCheck(config.connectionTimeOut);
+}
+
+/**
+ * Creates a new TCP server. The TCP server also supports Flash sockets and sends the
+ * &quot;cross domain policy&quot; file defined in the configuration accordingly.
+ *
+ * @method createTCPServer
+ * @param {Number} port The port the server should listen.
+ */
+function createTCPServer(port) {
+    var server = net.createServer();
+
+    server.on(&#x27;connection&#x27;, function (socket) {
+        logger.info(&#x27;New TCP connection&#x27;);
+        connectionPool.addTCPSocketConnection(socket);
+    });
+    server.listen(port, function () {
+        logger.info(&#x27;TCP Server is listening on port &#x27; + port);
+    });
 }
 
 /**

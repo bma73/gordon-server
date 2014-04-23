@@ -180,6 +180,13 @@
                             </li>
                         
                             <li class="index-item method">
+                                <a href="#method_createTCPServer">createTCPServer</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
                                 <a href="#method_createWebSocketServer">createWebSocketServer</a>
 
                                 
@@ -288,7 +295,7 @@
                     
 
                     <div class="param-description">
-                        <p>You could either pass an object or a filename.</p>
+                        <p>You could either pass an object or a filename pointing to a JSON file.</p>
 
                     </div>
 
@@ -301,6 +308,25 @@
 
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <p>The config file/object must have the following properties:</p>
+<p><pre>
+    {
+       &quot;connectionTimeOut&quot;:20000,
+       &quot;connectionBufferSize&quot;: 1000,
+       &quot;flashPolicyFile&quot;: &quot;&lt;cross-domain-policy&gt; &lt;allow-access-from domain=&#39;<em>&#39; to-ports=&#39;</em>&#39;/&gt; &lt;/cross-domain-policy&gt; &quot;
+    }
+</pre>
+<code>connectionTimeOut</code> Defines the time frame after which the server closes the connection to a client being inactive (sending no updates / ping).<br>
+<code>connectionBufferSize</code> The max size of a single message in bytes.<br>
+<code>flashPolicyFile</code> The socket policy xml file which is sent to a Flash/Air client.<br></p>
+
+            </div>
+        </div>
     
 </div>
 
@@ -500,7 +526,97 @@
             
         
         
-        <a href="../files/lib_server.js.html#l86"><code>lib\server.js:86</code></a>
+        <a href="../files/lib_server.js.html#l98"><code>lib\server.js:98</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Creates a new TCP server. The TCP server also supports Flash sockets and sends the
+&quot;cross domain policy&quot; file defined in the configuration accordingly.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">port</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The port the server should listen.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_createTCPServer" class="method item">
+    <h3 class="name"><code>createTCPServer</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>port</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/lib_server.js.html#l117"><code>lib\server.js:117</code></a>
         
         </p>
 
@@ -596,7 +712,7 @@
             
         
         
-        <a href="../files/lib_server.js.html#l105"><code>lib\server.js:105</code></a>
+        <a href="../files/lib_server.js.html#l136"><code>lib\server.js:136</code></a>
         
         </p>
 
@@ -696,7 +812,7 @@
             
         
         
-        <a href="../files/lib_server.js.html#l140"><code>lib\server.js:140</code></a>
+        <a href="../files/lib_server.js.html#l171"><code>lib\server.js:171</code></a>
         
         </p>
 

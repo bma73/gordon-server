@@ -493,7 +493,7 @@ See the examples for use cases.</p>
  var session = gordon.createSession('session1', 'Session with custom logic');
  var lobby = session.createRoom('lobby');
 
- //create the logic module only for room1
+ //create the logic module and attach it the room
  lobby.logic = new Gamelogic(lobby);
 </pre>
 
@@ -510,7 +510,7 @@ customMessageLogic(buffer, proceed)
 standard protocol flow.</p>
 <pre>
    this.changeRoomLogic = function (user, newRoom, oldRoom, proceed) {
-     //don't allow users to change from to room3
+     //don't allow users to change to room3
      if (newRoom.id == 'room3') {
           proceed(false);
      } else {
