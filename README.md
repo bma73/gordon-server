@@ -4,6 +4,7 @@ Gordon Server
 =============
 Gordon is a lightweight server for developing multiuser apps and games with HTML5 and Adobe Flash/Air.
 It uses a lean binary protocol to exchange data.
+####[Live demo][4]
 
 ----------
 
@@ -217,3 +218,4 @@ dataObject.broadcastValues([DataKey.X_POS, DataKey.Y_POS, DataKey.NAME]);
   [1]: https://cloud.githubusercontent.com/assets/7307652/2774582/445a43cc-caba-11e3-92f2-a2bc7600b52b.png
   [2]: https://github.com/bma73/gordon-client
   [3]: https://github.com/bma73/gordon-examples
+  [4]: http://bma73.github.io/gordon-examples/html/
