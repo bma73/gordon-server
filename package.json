@@ -1,6 +1,6 @@
 {
     "name": "gordon-server",
-    "description": "Multiuser Server for NodeJS",
+    "description": "Multiplayer Server for NodeJS, HTML5 and Adobe Flash/Air",
     "version": "0.1.0",
     "homepage": "https://github.com/bma73",
     "author": {
