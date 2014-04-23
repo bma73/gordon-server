@@ -7,7 +7,7 @@
         "lib\\structure\\data-object.js": {
             "name": "lib\\structure\\data-object.js",
             "modules": {
-                "gordon": 1
+                "gordon-server": 1
             },
             "classes": {
                 "DataObject": 1
@@ -53,8 +53,8 @@
         }
     },
     "modules": {
-        "gordon": {
-            "name": "gordon",
+        "gordon-server": {
+            "name": "gordon-server",
             "submodules": {},
             "classes": {
                 "DataObject": 1,
@@ -79,7 +79,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "gordon",
+            "module": "gordon-server",
             "namespace": "",
             "file": "lib\\structure\\data-object.js",
             "line": 34,
@@ -93,7 +93,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "gordon",
+            "module": "gordon-server",
             "namespace": "",
             "file": "lib\\structure\\room.js",
             "line": 6,
@@ -107,7 +107,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "gordon",
+            "module": "gordon-server",
             "namespace": "",
             "file": "lib\\structure\\session.js",
             "line": 6,
@@ -121,7 +121,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "gordon",
+            "module": "gordon-server",
             "namespace": "",
             "file": "lib\\structure\\user.js",
             "line": 6,
@@ -135,7 +135,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "gordon",
+            "module": "gordon-server",
             "namespace": "",
             "file": "lib\\server.js",
             "line": 8,
@@ -151,7 +151,7 @@
             "name": "id",
             "type": "Number",
             "class": "DataObject",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\data-object.js",
@@ -161,7 +161,7 @@
             "name": "room",
             "type": "Room",
             "class": "DataObject",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\data-object.js",
@@ -172,7 +172,7 @@
             "type": "User",
             "default": "null",
             "class": "DataObject",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\data-object.js",
@@ -192,7 +192,7 @@
                 "type": "<a href=\"http://nodejs.org/api/buffer.html\">Buffer</a>"
             },
             "class": "DataObject",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\data-object.js",
@@ -211,7 +211,7 @@
                 "\n<pre>\n    //broadcast the values of the keys 0, 4 and 12\n    dataObject.broadcastValues([0, 4, 12]);\n</pre>"
             ],
             "class": "DataObject",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\data-object.js",
@@ -220,7 +220,7 @@
             "itemtype": "method",
             "name": "broadcastAllValues",
             "class": "DataObject",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\room.js",
@@ -230,7 +230,7 @@
             "name": "id",
             "type": "String",
             "class": "Room",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\room.js",
@@ -241,7 +241,7 @@
             "type": "String",
             "default": "''",
             "class": "Room",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\room.js",
@@ -251,7 +251,7 @@
             "name": "name",
             "type": "String",
             "class": "Room",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\room.js",
@@ -262,7 +262,7 @@
             "type": "Number",
             "default": "50",
             "class": "Room",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\room.js",
@@ -272,7 +272,7 @@
             "name": "persistent",
             "type": "Boolean",
             "class": "Room",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\room.js",
@@ -282,7 +282,7 @@
             "name": "userCount",
             "type": "Number",
             "class": "Room",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\room.js",
@@ -292,7 +292,7 @@
             "name": "master",
             "type": "User",
             "class": "Room",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\room.js",
@@ -302,7 +302,7 @@
             "name": "session",
             "type": "Session",
             "class": "Room",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\room.js",
@@ -312,7 +312,7 @@
             "name": "logic",
             "type": "Object",
             "class": "Room",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\room.js",
@@ -341,7 +341,7 @@
                 "\n<pre>\n //define the dataobject structure\n var values = {};\n values[0] = new Buffer(1);\n values[1] = new Buffer(2);\n values[2] = new Buffer(2);\n values[3] = new Buffer(1);\n values[4] = new Buffer(4);\n\n this.active = Rnd.boolean();\n\n //write the initial values\n values[0].writeInt8(1, 0);\n values[1].writeInt16BE(900, 0);\n values[2].writeInt16BE(500, 0);\n values[3].writeInt8(false, 0);\n values[4].writeInt32BE(0xff0000, 0);\n\n //create and broadcast the dataObject\n this.dataObject = this.room.createDataObject(values, true);\n</pre>"
             ],
             "class": "Room",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\session.js",
@@ -351,7 +351,7 @@
             "name": "id",
             "type": "String",
             "class": "Session",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\session.js",
@@ -361,7 +361,7 @@
             "name": "roomCount",
             "type": "Number",
             "class": "Session",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\session.js",
@@ -371,7 +371,7 @@
             "name": "userCount",
             "type": "Number",
             "class": "Session",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\session.js",
@@ -381,7 +381,7 @@
             "name": "name",
             "type": "String",
             "class": "Session",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\session.js",
@@ -395,7 +395,7 @@
             "type": "Function",
             "default": "null",
             "class": "Session",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\session.js",
@@ -406,7 +406,7 @@
             "type": "Boolean",
             "default": "false",
             "class": "Session",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\session.js",
@@ -460,7 +460,7 @@
                 "type": "Room"
             },
             "class": "Session",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\session.js",
@@ -480,7 +480,7 @@
                 "type": "Room"
             },
             "class": "Session",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\user.js",
@@ -490,7 +490,7 @@
             "name": "id",
             "type": "Number",
             "class": "User",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\user.js",
@@ -500,7 +500,7 @@
             "name": "room",
             "type": "Room",
             "class": "User",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\user.js",
@@ -510,7 +510,7 @@
             "name": "session",
             "type": "Session",
             "class": "User",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\user.js",
@@ -520,7 +520,7 @@
             "name": "dataObject",
             "type": "DataObject",
             "class": "User",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\user.js",
@@ -530,7 +530,7 @@
             "name": "connection",
             "type": "TCPConnection or WebSocketConnection",
             "class": "User",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\user.js",
@@ -540,7 +540,7 @@
             "name": "lastPingTime",
             "type": "Number",
             "class": "User",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\structure\\user.js",
@@ -550,7 +550,7 @@
             "name": "name",
             "type": "String",
             "class": "User",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\server.js",
@@ -573,7 +573,7 @@
                 }
             ],
             "class": "Server",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\server.js",
@@ -605,7 +605,7 @@
                 "type": "Session"
             },
             "class": "Server",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\server.js",
@@ -624,7 +624,7 @@
                 "\nThe config file/object must have the following properties:\n<pre>\n    {\n       \"connectionTimeOut\":20000,\n       \"connectionBufferSize\": 1000,\n       \"flashPolicyFile\": \"&lt;cross-domain-policy&gt; &lt;allow-access-from domain='*' to-ports='*'/&gt; &lt;/cross-domain-policy&gt; \"\n    }\n</pre>\n<code>connectionTimeOut</code> Defines the time frame after which the server closes the connection to a client being inactive (sending no updates / ping).<br>\n<code>connectionBufferSize</code> The max size of a single message in bytes.<br>\n<code>flashPolicyFile</code> The socket policy xml file which is sent to a Flash/Air client.<br>"
             ],
             "class": "Server",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\server.js",
@@ -640,7 +640,7 @@
                 }
             ],
             "class": "Server",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\server.js",
@@ -656,7 +656,7 @@
                 }
             ],
             "class": "Server",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\server.js",
@@ -678,7 +678,7 @@
                 }
             ],
             "class": "Server",
-            "module": "gordon"
+            "module": "gordon-server"
         },
         {
             "file": "lib\\server.js",
@@ -691,7 +691,7 @@
                 "type": "Number"
             },
             "class": "Server",
-            "module": "gordon"
+            "module": "gordon-server"
         }
     ],
     "warnings": [

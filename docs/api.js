@@ -8,12 +8,12 @@ YUI.add("yuidoc-meta", function(Y) {
         "User"
     ],
     "modules": [
-        "gordon"
+        "gordon-server"
     ],
     "allModules": [
         {
-            "displayName": "gordon",
-            "name": "gordon"
+            "displayName": "gordon-server",
+            "name": "gordon-server"
         }
     ]
 } };
