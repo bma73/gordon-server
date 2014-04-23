@@ -38,7 +38,7 @@ DataObject could be used to represent objects like e.g. bots, windows, laser sho
 
 ###Usage
 ``` js
-var gordon = require('gordon');
+var gordon = require('gordon-server');
 
 gordon.setMaxUsers(1000);
 gordon.createTCPServer(9091);
@@ -63,7 +63,7 @@ See ``room logic`` for more infos.
 
 
 ``` js
- var gordon = require('gordon');
+ var gordon = require('gordon-server');
  //require a custom logic class
  var Gamelogic = require('./gamelogic');
 

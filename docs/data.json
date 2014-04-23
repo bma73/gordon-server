@@ -139,7 +139,7 @@
             "namespace": "",
             "file": "lib\\server.js",
             "line": 8,
-            "description": "The Gordon Server\n\n<pre>\n    var gordon = require('gordon');\n    //max number of concurrent users for this instance are 1000\n    gordon.setMaxUsers(1000);\n    gordon.createTCPServer(9091);\n    gordon.createWebSocketServer(9092);\n    var session = gordon.createSession('session1', 'A session');\n    var lobby = session.createRoom('lobby', {name:'lobby',\n                                             maxUsers:200,\n                                             persistent:true});\n    var room1 = session.createRoom('room1', {name:'Room1',\n                                             maxUsers:100,\n                                             persistent:true,\n                                             password:'top-secret'});\n</pre>"
+            "description": "The Gordon Server\n\n<pre>\n    var gordon = require('gordon-server');\n    //max number of concurrent users for this instance are 1000\n    gordon.setMaxUsers(1000);\n    gordon.createTCPServer(9091);\n    gordon.createWebSocketServer(9092);\n    var session = gordon.createSession('session1', 'A session');\n    var lobby = session.createRoom('lobby', {name:'lobby',\n                                             maxUsers:200,\n                                             persistent:true});\n    var room1 = session.createRoom('room1', {name:'Room1',\n                                             maxUsers:100,\n                                             persistent:true,\n                                             password:'top-secret'});\n</pre>"
         }
     },
     "classitems": [
