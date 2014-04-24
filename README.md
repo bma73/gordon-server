@@ -79,7 +79,7 @@ See ``room logic`` for more infos.
  session.logicFactory = function (room) {
   var gamelogic;
 
-  //rooms containing "room_blue" shall be initialized in that way
+  //room ids containing "room_blue" shall be initialized in that way
   if (room.id.indexOf('room_blue') != -1) {
       gamelogic = new Gamelogic(room, 0x0000FF);
       //by default rooms will be removed automatically after 2 sec if empty
