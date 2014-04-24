@@ -4,7 +4,6 @@ Gordon Server
 =============
 Gordon is a lightweight server for developing multiuser apps and games with HTML5 and Adobe Flash/Air.
 It uses a lean binary protocol to exchange data.
-####[Live demo][4]
 
 ----------
 
@@ -39,7 +38,7 @@ DataObject could be used to represent objects like e.g. bots, windows, laser sho
 
 ###Usage
 ``` js
-var gordon = require('gordon-server');
+var gordon = require('gordon');
 
 gordon.setMaxUsers(1000);
 gordon.createTCPServer(9091);
@@ -64,7 +63,7 @@ See ``room logic`` for more infos.
 
 
 ``` js
- var gordon = require('gordon-server');
+ var gordon = require('gordon');
  //require a custom logic class
  var Gamelogic = require('./gamelogic');
 
@@ -73,18 +72,20 @@ See ``room logic`` for more infos.
  gordon.createWebSocketServer(9092);
 
  var session = gordon.createSession('session1', 'A Session');
+ 
  //The rooms will be created on the fly, when users want to join
  session.autoRoomCreate = true;
 
  session.logicFactory = function (room) {
   var gamelogic;
 
-  if (room.id == 'room1') {
-      gamelogic = new Gamelogic(room, 0x800080);
+  //rooms containing "room_blue" shall be initialized in that way
+  if (room.id.indexOf('room_blue') != -1) {
+      gamelogic = new Gamelogic(room, 0x0000FF);
       //by default rooms will be removed automatically after 2 sec if empty
       //setting the persistent flag to true will prevent this
       room.persistent = true;
-      room.name = 'Room#1';
+      room.name = 'Blue Room';
       return gamelogic;
   }
 
@@ -105,7 +106,7 @@ See ``room logic`` for more infos.
 ```
 #### Room Logic
 Every room can have its own custom room logic.
-See the examples for use cases.
+See the [gordon-examples][3] for use cases.
 
 ```js
 var Gamelogic = require('./gamelogic');
@@ -218,4 +219,3 @@ dataObject.broadcastValues([DataKey.X_POS, DataKey.Y_POS, DataKey.NAME]);
   [1]: https://cloud.githubusercontent.com/assets/7307652/2774582/445a43cc-caba-11e3-92f2-a2bc7600b52b.png
   [2]: https://github.com/bma73/gordon-client
   [3]: https://github.com/bma73/gordon-examples
-  [4]: http://bma73.github.io/gordon-examples/html/
